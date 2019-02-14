@@ -6,4 +6,5 @@ from django.http import HttpResponse
 
 def home_view(request):
 
-    return HttpResponse('<b>Public Recommendation System</b>')
+    context = {}
+    return render(request, "home.html", context)
