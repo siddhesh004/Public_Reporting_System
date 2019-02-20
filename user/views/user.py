@@ -7,9 +7,5 @@ class SignUpView(TemplateView):
 
 
 def home(request):
-    if request.user.is_authenticated:
-        if request.user.is_teacher:
-            return redirect('civic:see_reports')
-        else:
-            return redirect('public:report')
-    return render(request, 'user/home.html')
+
+    return render(request, 'home.html')

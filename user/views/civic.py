@@ -1,10 +1,12 @@
 from django.contrib.auth import login
-from django.views.generic import CreateView
+from django.shortcuts import redirect
+from django.views.generic import CreateView, TemplateView
 from ..forms import CivicSignUpForm
-from ..models import User
+from ..models import User, Civic
+
 
 class CivicSignUpView(CreateView):
-    model = User
+    model = Civic
     form_class = CivicSignUpForm
     template_name = 'registration/signup_form.html'
 
@@ -15,4 +17,8 @@ class CivicSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('')
+        return redirect('civic:civic_home')
+
+
+class CivicHomeView(TemplateView):
+    template_name = 'civic/civic_home.html'

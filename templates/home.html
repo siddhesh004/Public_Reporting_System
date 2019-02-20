@@ -37,7 +37,7 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li><a href="#">Home</a></li>
+								<li><a href="{% url 'home' %}">Home</a></li>
 								<li>
 									<a href="">Report an Incident</a>
 									
@@ -57,14 +57,16 @@
 										<h2>Made by Siddhesh Pai and Advait Lad</h2>
 										
 									</header>
-									<a href="#" class="button alt">Sign Up</a>
+									<a href="{% url 'public_signup' %}" class="button alt">Public Sign Up</a>
+									<a href="{% url 'civic_signup' %}" class="button alt">Civic Sign Up</a>
 								</section>			
 							</div>
 						</div>
 
 				</div>
 			</div>
-
+{% block content %}
+        {% endblock %}
 
 		<!-- Footer -->
 			<div id="footer">
