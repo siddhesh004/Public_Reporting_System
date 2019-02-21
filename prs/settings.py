@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user',
+    'leaflet'
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,14 @@ TEMPLATES = [
         },
     },
 ]
-
+LEAFLET_CONFIG = {
+'DEFAULT_CENTER': (19.0760, 72.8777),
+'DEFAULT_ZOOM': 12,
+'MIN_ZOOM': 3,
+'MAX_ZOOM': 18,
+'NO_GLOBALS' : False,
+'MINIMAP': True
+}
 WSGI_APPLICATION = 'prs.wsgi.application'
 
 

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 {% load static %}
 {% load staticfiles %}
+{% load leaflet_tags %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <!--
 	Horizons by TEMPLATED
@@ -24,6 +25,8 @@
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		{% leaflet_js %}
+		{% leaflet_css %}
 	</head>
 	<body class="homepage">
 
@@ -43,11 +46,19 @@
 									
 								</li>
 								<li><a href="#">View Incidents</a></li>
-								<li><a href="#">Civic Authorities</a></li>
 								<li><a href="#">Login</a></li>
 							</ul>
 						</nav>
+						{% leaflet_map "main" %}
+					<script type="text/javascript">
+    function map_init(map, options) {
+        // zoom to point
+        var marker = L.marker([19.0760 , 72.8777]).addTo(map);
 
+
+
+    }
+</script>
 
 					<!-- Banner -->
 						<div id="banner">

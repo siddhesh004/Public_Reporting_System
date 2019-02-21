@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from user import views
 from user.views import user, public, civic
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('accounts/signup/', user.SignUpView.as_view(), name='signup'),
     path('accounts/signup/public', public.PublicSignUpView.as_view(), name='public_signup'),
     path('accounts/signup/civic', civic.CivicSignUpView.as_view(), name='civic_signup'),
+    #path('map/', views.map_view.as_View(), name='map'),
 
 ]
