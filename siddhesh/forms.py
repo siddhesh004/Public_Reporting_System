@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-
-from siddhesh.models import User, Public, Civic
+from leaflet.forms.fields import PointField
+from siddhesh.models import User, Public, Civic, Incidence
 
 
 class CivicSignUpForm(UserCreationForm):
@@ -40,3 +40,11 @@ class PublicSignUpForm(UserCreationForm):
         public.name = self.cleaned_data.get('name')
         public.save()
         return user
+
+
+class IncidenceForm(forms.ModelForm):
+    pos = PointField()
+
+    class Meta:
+        model = Incidence
+        fields = ('desc', 'pos')

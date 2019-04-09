@@ -1,8 +1,9 @@
 from django.urls import include, path
-from .views import user, public, civic
-
+from .views import user, public, civic, incidence
 
 urlpatterns = [
+
+    path('incidence/',user.MapView.as_view(),name='incidence'),
 
     path('', user.home, name='home'),
     path('public/', include(([

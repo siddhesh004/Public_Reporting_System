@@ -28,4 +28,5 @@ urlpatterns = [
     path('accounts/signup/civic', civic.CivicSignUpView.as_view(), name='civic_signup'),
     # path('map/', views.map_view.as_View(), name='map'),
 
+
 ]

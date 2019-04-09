@@ -1,5 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.gis.db import models as gis_models
+
+
 
 
 class User(AbstractUser):
@@ -21,3 +24,14 @@ class Civic(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Incidence(models.Model):
+    desc = models.CharField(max_length=500)
+    pos = gis_models.PointField(srid=4326)
+
+    def __str__(self):
+        return self.desc
+
+
+
