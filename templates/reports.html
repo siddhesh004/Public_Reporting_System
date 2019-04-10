@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+    <h1>Incidences Reported by Public</h1>
+
+   <div class="container">
+
+
+<br>
+
+<div class="card">
+<div class="card-title">Reports</div>
+    {% for report in reports %}
+<hr>
+    <p><strong>Description:</strong> {{report.desc}}</p>
+    <p><strong>Locality:</strong> {{report.locality}}</p>
+
+{% endfor %}
+
+
+</div>
+</div>
+
+
+{% endblock %}

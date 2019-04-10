@@ -41,43 +41,55 @@
 						<nav id="nav">
 							<ul>
 								<li><a href="{% url 'home' %}">Home</a></li>
+                            {% if user.is_authenticated %}
 								<li>
-									<a href="">Report an Incident</a>
+									<a href="{% url 'incidence' %}">Report an Incident</a>
 									
 								</li>
-								<li><a href="#">View Incidents</a></li>
-								<li><a href="#">Login</a></li>
+                            {% endif %}
+								<li><a href="{% url 'reports' %}">View Incidents</a></li>
+                                <li><a href="{% url 'signup' %}">SIGNUP</a></li>
+								<li><a href="{% url 'login' %}">Login</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% endif %}
 							</ul>
 						</nav>
-						{% leaflet_map "main" %}
-					<script type="text/javascript">
-    function map_init(map, options) {
-        // zoom to point
-        var marker = L.marker([19.0760 , 72.8777]).addTo(map);
+{#						{% leaflet_map "main" %}#}
 
-
-
-    }
-</script>
 
 					<!-- Banner -->
-						<div id="banner">
-							<div class="container">
-								<section>
-									<header class="major">
-										<h2>Made by Siddhesh Pai and Advait Lad</h2>
-										
-									</header>
-									<a href="{% url 'public_signup' %}" class="button alt">Public Sign Up</a>
-									<a href="{% url 'civic_signup' %}" class="button alt">Civic Sign Up</a>
-								</section>			
-							</div>
-						</div>
+
 
 				</div>
 			</div>
 {% block content %}
         {% endblock %}
+       {% if user.is_authenticated %}
+        <div id="banner">
+							<div class="container">
+								<section>
+									<header class="major">
+										<h2>WELCOME {{user.get_username}}.</h2>
+
+									</header>
+
+								</section>
+							</div>
+						</div>
+        {% else %}
+  <div id="banner">
+							<div class="container">
+								<section>
+									<header class="major">
+										<h2>Please Signup or Login</h2>
+
+									</header>
+
+								</section>
+							</div>
+						</div>
+    {% endif %}
 
 		<!-- Footer -->
 			<div id="footer">

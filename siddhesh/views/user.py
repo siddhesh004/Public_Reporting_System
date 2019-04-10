@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
-
+from ..models import Incidence
 from ..forms import IncidenceForm
 
 class SignUpView(TemplateView):
@@ -11,10 +11,27 @@ def home(request):
 
     return render(request, 'home.html')
 
-class MapView(TemplateView):
 
-    template_name = 'incidence.html'
+def IncidenceReport(request):
 
-    def get_context(self, **kwargs):
-        context = {'incidenceform': IncidenceForm()}
-        return context
+        form = IncidenceForm(request.POST or None)
+
+        if form.is_valid():
+            form.save()
+            form = IncidenceForm()
+
+        context = {'form': form}
+
+        return render(request,"incidence.html",context)
+
+
+def signupview(request):
+
+    return render(request, 'signup.html')
+
+
+def reported(request):
+
+    reports = Incidence.objects.all()
+
+    return render(request,'reports.html',context={'reports':reports})

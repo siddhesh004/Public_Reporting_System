@@ -28,7 +28,10 @@ class Civic(models.Model):
 
 class Incidence(models.Model):
     desc = models.CharField(max_length=500)
-    pos = gis_models.PointField(srid=4326)
+    pos = gis_models.PointField(srid=4326, blank=True, null=True)
+    locality = models.CharField(max_length=100,default='')
+    upvotes = models.IntegerField(default=0)
+    downvotes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.desc

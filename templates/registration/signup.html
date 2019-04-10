@@ -1,0 +1,32 @@
+{% extends 'home.html' %}
+
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div id="banner">
+							<div class="container">
+								<section>
+									<header class="major">
+										<h2>You are already logged in.</h2>
+
+									</header>
+
+								</section>
+							</div>
+						</div>
+        {% else %}
+  <div id="banner">
+							<div class="container">
+								<section>
+									<header class="major">
+										<h2>Made by Siddhesh Pai and Advait Lad</h2>
+
+									</header>
+									<a href="{% url 'public_signup' %}" class="button alt">Public Sign Up</a>
+									<a href="{% url 'civic_signup' %}" class="button alt">Civic Sign Up</a>
+								</section>
+							</div>
+						</div>
+    {% endif %}
+{% endblock %}

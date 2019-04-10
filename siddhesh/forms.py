@@ -43,8 +43,7 @@ class PublicSignUpForm(UserCreationForm):
 
 
 class IncidenceForm(forms.ModelForm):
-    pos = PointField()
 
     class Meta:
         model = Incidence
-        fields = ('desc', 'pos')
+        fields = ('desc', 'locality')
