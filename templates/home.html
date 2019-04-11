@@ -3,6 +3,16 @@
 {% load staticfiles %}
 {% load leaflet_tags %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script><link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
 <!--
 	Horizons by TEMPLATED
 	templated.co @templatedco
@@ -25,8 +35,8 @@
 			<link rel="stylesheet" href="css/style.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-		{% leaflet_js %}
-		{% leaflet_css %}
+		{% leaflet_js plugins="forms" %}
+		{% leaflet_css plugins="forms" %}
 	</head>
 	<body class="homepage">
 
@@ -42,12 +52,22 @@
 							<ul>
 								<li><a href="{% url 'home' %}">Home</a></li>
                             {% if user.is_authenticated %}
+                                {% if user.is_public %}
 								<li>
 									<a href="{% url 'incidence' %}">Report an Incident</a>
 									
 								</li>
                             {% endif %}
+                            {% endif %}
+                            {% if user.is_public %}
 								<li><a href="{% url 'reports' %}">View Incidents</a></li>
+                            {% endif %}
+                            {% if user.is_authenticated %}
+                            {% if user.is_civic %}
+								<li><a href="{% url 'civicreports' %}">View Urgent Incidents</a></li>
+                            {% endif %}
+
+                            {% endif %}
                                 <li><a href="{% url 'signup' %}">SIGNUP</a></li>
 								<li><a href="{% url 'login' %}">Login</a></li>
                                 {% if user.is_authenticated %}
@@ -70,7 +90,6 @@
 							<div class="container">
 								<section>
 									<header class="major">
-										<h2>WELCOME {{user.get_username}}.</h2>
 
 									</header>
 

@@ -37,4 +37,14 @@ class Incidence(models.Model):
         return self.desc
 
 
+class Vote(models.Model):
+
+    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
+    incidence = models.ForeignKey(Incidence, related_name='incidence', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'incidence')
+
+
+
 

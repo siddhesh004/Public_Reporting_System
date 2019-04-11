@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from leaflet.forms.fields import PointField
+from leaflet.forms.widgets import LeafletWidget
+
 from siddhesh.models import User, Public, Civic, Incidence
 
 
@@ -46,4 +48,5 @@ class IncidenceForm(forms.ModelForm):
 
     class Meta:
         model = Incidence
-        fields = ('desc', 'locality')
+        fields = ('desc', 'locality', 'pos')
+        widgets = {'pos': LeafletWidget()}

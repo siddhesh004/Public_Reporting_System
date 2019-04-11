@@ -10,17 +10,16 @@
 <br>
 
 <div class="card">
-<div class="card-title">Reports</div>
+<div class="card-title">Urgent Reports</div>
 <div class="card-body">
     {% for report in reports %}
 <hr>
+        {% if report.upvotes > report.downvotes %}
     <p><strong>Description:</strong> {{report.desc}}</p>
     <p><strong>Locality:</strong> {{report.locality}}</p>
         <div class="row mb-2">
-  <div class="col-md-12 ">
-        <a class="btn btn-success ml-3" href="{% url 'upvote' report.id %}">Upvote</a>
-        <a href="{% url 'downvote' report.id %}" class="btn btn-danger">Downvote</a>
-    </div>
+        {%endif%}
+
 </div>
 
 {% endfor %}
